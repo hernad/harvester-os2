@@ -1,7 +1,8 @@
 ARG LUET_VERSION=0.16.7
 FROM quay.io/luet/base:$LUET_VERSION AS luet
 
-FROM opensuse/leap:15.3 AS base
+#FROM opensuse/leap:15.3 AS base
+FROM my-opensuse-15.3 AS base
 
 # Copy luet from the official images
 COPY --from=luet /usr/bin/luet /usr/bin/luet
@@ -108,15 +109,15 @@ ARG CACHEBUST
 RUN luet install -y \
     toolchain/yip \
     toolchain/luet \
-    utils/installer@0.18 \
+    utils/installer \
     system/cos-setup \
-    system/immutable-rootfs@0.2.0-11 \
+    system/immutable-rootfs \
     system/grub2-config \
     selinux/k3s \
     selinux/rancher \
     utils/k9s \
     utils/nerdctl \
-    utils/rancherd@0.0.1-alpha07-9 \
+    utils/rancherd \
     toolchain/yq
 
 # Create the folder for journald persistent data
