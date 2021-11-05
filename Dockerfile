@@ -77,7 +77,6 @@ RUN zypper in -y \
     which \
     lshw \
     fio \
-    iperf3 \
     htop
 
 # Additional firmware packages
