@@ -2,9 +2,9 @@
 
 unset DIRTY
 
-if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
-    DIRTY="-dirty"
-fi
+#if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
+#    DIRTY="-dirty"
+#fi
 
 COMMIT=$(git rev-parse --short HEAD)
 GIT_TAG=${DRONE_TAG:-$(git tag -l --contains HEAD | head -n 1)}
@@ -17,3 +17,4 @@ else
     VERSION="${BUILD_TIME}-${COMMIT}${DIRTY}"
 fi
 
+echo $VERSION
