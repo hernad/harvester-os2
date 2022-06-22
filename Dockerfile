@@ -85,8 +85,6 @@ RUN zypper in -y \
     qemu-block-ssh \
     qemu-chardev-spice \
     qemu-guest-agent \
-    qemu-hw-usb-host \
-    qemu-hw-usb-redirect \
     qemu-ksm \
     qemu-seabios \
     htop \
