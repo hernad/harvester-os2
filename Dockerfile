@@ -77,9 +77,27 @@ RUN zypper in -y \
     lshw \
     fio \
     qemu \
+    qemu-kvm \
+    qemu-ovmf-x86_64 \
+    qemu-ipxe \
+    qemu-block-iscsi \
+    qemu-block-nfs \
+    qemu-block-ssh \
+    qemu-chardev-spice \
+    qemu-guest-agent \
+    qemu-hw-usb-host \
+    qemu-hw-usb-redirect \
+    qemu-ksm \
+    qemu-seabios \
     htop \
     iperf \
-    net-tools-deprecated
+    net-tools-deprecated \
+    bridge-utils \
+    telnet \
+    unzip \
+    zsync \
+    usbutils \
+    tmux
 
 # Additional firmware packages
 RUN zypper in -y kernel-firmware-chelsio \
