@@ -95,7 +95,9 @@ RUN zypper in -y \
     unzip \
     zsync \
     usbutils \
-    tmux
+    tmux \
+    python3-yamllint \
+    python3-setuptools
 
 # Additional firmware packages
 RUN zypper in -y kernel-firmware-chelsio \
