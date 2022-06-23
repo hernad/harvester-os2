@@ -97,7 +97,8 @@ RUN zypper in -y \
     usbutils \
     tmux \
     python3-yamllint \
-    python3-setuptools
+    python3-setuptools \
+    the_silver_searcher
 
 # Additional firmware packages
 RUN zypper in -y kernel-firmware-chelsio \
