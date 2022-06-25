@@ -99,7 +99,8 @@ RUN zypper in -y \
     python3-yamllint \
     python3-setuptools \
     the_silver_searcher \
-    smartmontools    
+    smartmontools \
+    cryptsetup   
 
 # Additional firmware packages
 RUN zypper in -y kernel-firmware-chelsio \
