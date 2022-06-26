@@ -132,6 +132,11 @@ RUN zypper in -y traceroute \
     kdump \
     supportutils
 
+# custom kernel
+RUN zypper in -y -t pattern devel_basis 
+RUN zypper in -y bc openssl openssl-devel dwarves rpm-build libelf-devel
+RUN zypper in -y git
+
 RUN zypper clean
 
 ARG CACHEBUST
