@@ -157,7 +157,7 @@ RUN unset ARCH && cd /usr/src/linux &&\
 
 RUN unset ARCH && cd /usr/src/linux && make -C /usr/src/linux M=drivers/scsi hpsa.ko
 
-RUN cd /usr/src/linux && ls -l drivers/scsi/hpsa* && xz drivers/scsi/hpsa.ko ; cp -av drivers/scsi/hpsa.ko.xz /lib/modules/5.3*/kernel/drivers/scsi/ &&\
+RUN xz /usr/src/linux/drivers/scsi/hpsa.ko && cp -av /usr/src/linux/drivers/scsi/hpsa.ko.xz /lib/modules/$KERNEL_VERSION/kernel/drivers/scsi/ &&\
     depmod $KERNEL_VERSION 
 
 RUN rm -rf /usr/src/linux*
