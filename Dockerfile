@@ -159,7 +159,7 @@ RUN unset ARCH && cd /usr/src/linux && make -C /usr/src/linux M=drivers/scsi hps
 
 RUN xz /usr/src/linux/drivers/scsi/hpsa.ko && cp -av /usr/src/linux/drivers/scsi/hpsa.ko.xz /lib/modules/$KERNEL_VERSION/kernel/drivers/scsi/ &&\
     depmod $KERNEL_VERSION 
-
+RUN ls -lh /lib/modules/$KERNEL_VERSION/kernel/drivers/scsi/hpsa.ko*
 RUN rm -rf /usr/src/linux*
 RUN zypper clean
 
