@@ -132,13 +132,35 @@ RUN zypper in -y traceroute \
     kdump \
     supportutils
 
+# rancher:/ # zypper wp /lib/modules/5.3.18-150300.59.76-default/kernel/drivers/scsi/hpsa.ko.xz
+# kernel-default | The Standard Kernel | package
+
 # custom kernel
+ENV KERNEL_MAJOR_VERSION=5.3
+ENV KERNEL_VERSION=5.3.18-150300.59.76-default
 RUN zypper in -y -t pattern devel_basis 
 RUN zypper in -y bc openssl openssl-devel dwarves rpm-build libelf-devel
-RUN zypper in -y git
+RUN zypper in -y kernel kernel-source git
+RUN zypper in -y wget xz
+RUN ls -ld /usr/src/linux*
 RUN cp /boot/config* /usr/src/linux/.config
-RUN cd /usr/src/linux ; make
+RUN unset ARCH && cd /usr/src/linux &&\
+    echo CONFIG_SCSI_HPSA=m >> .config &&\
+    make -C /usr/src/linux O=$(pwd) clean oldconfig &&\
+    git clone https://github.com/artizirk/hpsahba &&\
+    cd hpsahba && make ; chmod +x hpsahba && cp -av hpsahba /usr/local/sbin/ && cd .. &&\
+    cd hpsahba/contrib/dkms &&\
+    export VERSION=$KERNEL_MAJOR_VERSION &&\
+    ./patch.sh &&\
+    cp *.h *.c /usr/src/linux/drivers/scsi/ &&\
+    cd /usr/src/linux && make drivers/scsi/ 
 
+RUN unset ARCH && cd /usr/src/linux && make -C /usr/src/linux M=drivers/scsi hpsa.ko
+
+RUN cd /usr/src/linux && ls -l drivers/scsi/hpsa* && xz drivers/scsi/hpsa.ko ; cp -av drivers/scsi/hpsa.ko.xz /lib/modules/5.3*/kernel/drivers/scsi/ &&\
+    depmod $KERNEL_VERSION 
+
+RUN rm -rf /usr/src/linux*
 RUN zypper clean
 
 ARG CACHEBUST
