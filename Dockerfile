@@ -178,6 +178,8 @@ RUN luet install -y \
     toolchain/yq
 
 RUN echo "options hpsa hpsa_use_nvram_hba_flag=1" > /etc/modprobe.d/hpsa.conf
+RUN echo "allow_unsupported_modules 1" > /etc/modprobe.d/10-unsupported-modules.conf
+
 
 # Download rancherd binary to pin the version
 RUN curl -o /usr/bin/rancherd -sfL "https://github.com/rancher/rancherd/releases/download/${RANCHERD_VERSION}/rancherd-amd64" && chmod 0755 /usr/bin/rancherd
