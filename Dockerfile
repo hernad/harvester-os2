@@ -177,6 +177,8 @@ RUN luet install -y \
     utils/nerdctl \
     toolchain/yq
 
+RUN echo "options hpsa hpsa_use_nvram_hba_flag=1" > /etc/modprobe.d/hpsa.conf
+
 # Download rancherd binary to pin the version
 RUN curl -o /usr/bin/rancherd -sfL "https://github.com/rancher/rancherd/releases/download/${RANCHERD_VERSION}/rancherd-amd64" && chmod 0755 /usr/bin/rancherd
 
@@ -188,6 +190,7 @@ RUN mkdir -p /usr/local/cloud-config
 RUN mkdir -p /oem
 
 COPY files/ /
+
 RUN mkinitrd
 
 COPY os-release /usr/lib/os-release
