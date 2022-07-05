@@ -194,5 +194,6 @@ RUN mkdir -p /oem
 COPY files/ /
 
 RUN mkinitrd
+lsinitrd /boot/initrd-${KERNEL_VERSION} | grep hpsa.conf
 
 COPY os-release /usr/lib/os-release
