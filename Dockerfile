@@ -132,6 +132,12 @@ RUN zypper in -y traceroute \
     kdump \
     supportutils
 
+#RUN zypper --no-gpg-checks ref
+RUN zypper addrepo https://download.opensuse.org/repositories/filesystems/15.3/filesystems.repo
+RUN zypper --gpg-auto-import-keys refresh
+RUN zypper install -y zfs zfs-kmp-default
+
+
 # rancher:/ # zypper wp /lib/modules/5.3.18-150300.59.76-default/kernel/drivers/scsi/hpsa.ko.xz
 # kernel-default | The Standard Kernel | package
 
@@ -161,6 +167,7 @@ RUN xz /usr/src/linux/drivers/scsi/hpsa.ko && cp -av /usr/src/linux/drivers/scsi
     depmod $KERNEL_VERSION 
 RUN ls -lh /lib/modules/$KERNEL_VERSION/kernel/drivers/scsi/hpsa.ko*
 RUN rm -rf /usr/src/linux*
+
 RUN zypper clean
 
 ARG CACHEBUST
