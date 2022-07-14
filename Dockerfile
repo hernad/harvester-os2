@@ -168,6 +168,45 @@ RUN xz /usr/src/linux/drivers/scsi/hpsa.ko && cp -av /usr/src/linux/drivers/scsi
 RUN ls -lh /lib/modules/$KERNEL_VERSION/kernel/drivers/scsi/hpsa.ko*
 RUN rm -rf /usr/src/linux*
 
+RUN rm -rf /usr/share/man
+RUN rm -rf /usr/share/zfs
+RUN rm -rf /usr/share/pibs
+RUN rm -rf /usr/share/mime
+RUN rm -rf /usr/share/mibs
+RUN rm -rf /usr/share/X11
+RUN rm -rf /usr/share/bash-completion
+RUN rm -rf /usr/share/autoconf
+RUN rm -rf /usr/share/automake-1.5
+RUN rm -rf /usr/share/doc
+RUN rm -rf /usr/share/emacs
+RUN rm -rf /usr/share/fish
+RUN rm -rf /usr/share/fontconfig
+RUN rm -rf /usr/share/zoneinfo/right
+RUN rm -rf /usr/share/zoneinfo/Asia
+RUN rm -rf /usr/lib/sysimage/
+RUN rm -rf /usr/lib/locale/zh_TW.euctw
+RUN rm -rf /usr/lib/locale/wa_BE.utf8
+RUN rm -rf /usr/lib/locale/wa_BE@euro
+RUN rm -rf /usr/lib/locale/uz_UZ.utf8
+RUN rm -rf /usr/lib/locale/uk_UA.utf8
+RUN rm -rf /usr/lib/locale/tr_CY.utf8
+RUN rm -rf /usr/lib/locale/tg_TJ.utf8
+RUN rm -rf /usr/lib/locale/szl_PL
+RUN rm -rf /usr/lib/locale/sq_AL.utf8
+RUN rm -rf /usr/lib/locale/shs_CA
+RUN rm -rf /usr/lib/locale/mr_IN
+RUN rm -rf /usr/lib/locale/mt_MT.utf8
+RUN rm -rf /usr/lib/locale/mi_NZ.utf8
+RUN rm -rf /usr/lib/locale/lt_LT.utf8
+RUN rm -rf /usr/lib/locale/kw_*
+RUN rm -rf /usr/lib/locale/ja_*
+RUN rm -rf /usr/lib/locale/fi_*
+RUN rm -rf /usr/lib/locale/es_*
+RUN rm -rf /usr/lib/locale/br_*
+RUN rm -rf /usr/lib/perl5
+
+RUN rm -rf /usr/include
+
 RUN zypper clean
 
 ARG CACHEBUST
