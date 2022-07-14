@@ -203,7 +203,6 @@ RUN rm -rf /usr/lib/locale/ja_*
 RUN rm -rf /usr/lib/locale/fi_*
 RUN rm -rf /usr/lib/locale/es_*
 RUN rm -rf /usr/lib/locale/br_*
-RUN rm -rf /usr/lib/perl5
 
 RUN rm -rf /usr/include
 
@@ -240,6 +239,9 @@ RUN mkdir -p /oem
 COPY files/ /
 
 RUN mkinitrd
+# mkinitrd koristi perl
+RUN rm -rf /usr/lib/perl5
+
 RUN lsinitrd /boot/initrd-${KERNEL_VERSION} | grep hpsa.conf
 
 COPY os-release /usr/lib/os-release
