@@ -146,7 +146,7 @@ RUN zypper install -y zfs zfs-kmp-default
 
 # custom kernel
 ENV KERNEL_MAJOR_VERSION=5.3
-ENV KERNEL_VERSION=5.3.18-150300.59.81-defaultu
+ENV KERNEL_VERSION=5.3.18-150300.59.81-default
 RUN zypper in -y -t pattern devel_basis 
 RUN zypper in -y bc openssl openssl-devel dwarves rpm-build libelf-devel
 RUN zypper in -y kernel kernel-source git
