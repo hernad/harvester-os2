@@ -96,12 +96,15 @@ RUN zypper in -y \
     zsync \
     usbutils \
     tmux \
-    python3-yamllint \
     python3-setuptools \
     the_silver_searcher \
     smartmontools \
-    cryptsetup   
+    xfsprogs
 
+#python3-yamllint \
+#cryptsetup
+
+   
 # Additional firmware packages
 RUN zypper in -y kernel-firmware-chelsio \
     kernel-firmware-liquidio \
