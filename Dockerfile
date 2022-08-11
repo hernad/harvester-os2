@@ -2,6 +2,11 @@ FROM registry.opensuse.org/isv/rancher/harvester/baseos/main/baseos:latest AS ba
 
 COPY files/etc/luet/luet.yaml /etc/luet/luet.yaml
 
+ARG ARCH=amd64
+ENV ARCH=${ARCH}
+RUN zypper mr --disable repo-non-oss repo-update-non-oss
+RUN zypper --no-gpg-checks ref
+RUN zypper update -y
 
 RUN zypper in  dracut \
     lshw \
