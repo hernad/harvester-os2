@@ -95,26 +95,29 @@ RUN rm -rf /usr/share/fish
 RUN rm -rf /usr/share/fontconfig
 RUN rm -rf /usr/share/zoneinfo/right
 RUN rm -rf /usr/share/zoneinfo/Asia
+RUN rm -rf /usr/share/info
 RUN rm -rf /usr/lib/sysimage/
-RUN rm -rf /usr/lib/locale/zh_TW.euctw
-RUN rm -rf /usr/lib/locale/wa_BE.utf8
-RUN rm -rf /usr/lib/locale/wa_BE@euro
-RUN rm -rf /usr/lib/locale/uz_UZ.utf8
-RUN rm -rf /usr/lib/locale/uk_UA.utf8
-RUN rm -rf /usr/lib/locale/tr_CY.utf8
-RUN rm -rf /usr/lib/locale/tg_TJ.utf8
-RUN rm -rf /usr/lib/locale/szl_PL
-RUN rm -rf /usr/lib/locale/sq_AL.utf8
-RUN rm -rf /usr/lib/locale/shs_CA
-RUN rm -rf /usr/lib/locale/mr_IN
-RUN rm -rf /usr/lib/locale/mt_MT.utf8
-RUN rm -rf /usr/lib/locale/mi_NZ.utf8
-RUN rm -rf /usr/lib/locale/lt_LT.utf8
-RUN rm -rf /usr/lib/locale/kw_*
-RUN rm -rf /usr/lib/locale/ja_*
-RUN rm -rf /usr/lib/locale/fi_*
-RUN rm -rf /usr/lib/locale/es_*
-RUN rm -rf /usr/lib/locale/br_*
+
+#RUN rm -rf /usr/lib/locale/zh_TW.euctw
+#RUN rm -rf /usr/lib/locale/wa_BE.utf8
+#RUN rm -rf /usr/lib/locale/wa_BE@euro
+#RUN rm -rf /usr/lib/locale/uz_UZ.utf8
+#RUN rm -rf /usr/lib/locale/uk_UA.utf8
+#RUN rm -rf /usr/lib/locale/tr_CY.utf8
+#RUN rm -rf /usr/lib/locale/tg_TJ.utf8
+#RUN rm -rf /usr/lib/locale/szl_PL
+#RUN rm -rf /usr/lib/locale/sq_AL.utf8
+#RUN rm -rf /usr/lib/locale/shs_CA
+#RUN rm -rf /usr/lib/locale/mr_IN
+#RUN rm -rf /usr/lib/locale/mt_MT.utf8
+#RUN rm -rf /usr/lib/locale/mi_NZ.utf8
+#RUN rm -rf /usr/lib/locale/lt_LT.utf8
+#RUN rm -rf /usr/lib/locale/kw_*
+#RUN rm -rf /usr/lib/locale/ja_*
+#RUN rm -rf /usr/lib/locale/fi_*
+#RUN rm -rf /usr/lib/locale/es_*
+#RUN rm -rf /usr/lib/locale/br_*
+RUN mkdir /tmp/locale ; mv /usr/lib/locale/en_US* /tmp/locale/ ;  rm -rf /usr/lib/locale/* ; mv /tmp/locale/* /usr/lib/locale/
 
 RUN rm -rf /usr/include
 RUN zypper clean
