@@ -4,11 +4,19 @@ COPY files/etc/luet/luet.yaml /etc/luet/luet.yaml
 
 ARG ARCH=amd64
 ENV ARCH=${ARCH}
-RUN zypper mr --disable repo-non-oss repo-update-non-oss
+
+RUN zypper ar http://download.opensuse.org/distribution/leap/15.3/repo/oss/ oss
+RUN zypper ar http://download.opensuse.org/update/leap/15.3/oss/ oss-update
+RUN zypper ar http://download.opensuse.org/update/leap/15.3/sle/ sle-update
+
+
+
+#RUN zypper lr -d
+#RUN zypper mr --disable repo-non-oss repo-update-non-oss
 RUN zypper --no-gpg-checks ref
 RUN zypper update -y
 
-RUN zypper in  dracut \
+RUN zypper in -y  dracut \
     lshw \
     fio \
     qemu \
@@ -47,7 +55,7 @@ RUN zypper install -y zfs zfs-kmp-default
 
 # custom kernel
 ENV KERNEL_MAJOR_VERSION=5.3
-ENV KERNEL_VERSION=5.3.18-150300.59.81-default
+ENV KERNEL_VERSION=5.3.18-150300.59.87-default
 RUN zypper in -y -t pattern devel_basis 
 RUN zypper in -y bc openssl openssl-devel dwarves rpm-build libelf-devel
 RUN zypper in -y kernel kernel-source git
