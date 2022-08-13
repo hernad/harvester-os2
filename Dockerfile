@@ -149,6 +149,11 @@ RUN mkdir -p /usr/local/cloud-config
 RUN mkdir -p /oem
 
 COPY files/ /
+
+# cos-immutable-rootfs - add dracut zfs dependency
+# cos dependencies are: rootfs-block, dm, zfs
+RUN sed -i 's/echo rootfs-block dm/echo rootfs-block dm zfs/g' /usr/lib/dracut/modules.d/30cos-immutable-rootfs/module-setup.sh
+
 RUN mkinitrd
 
 RUN lsinitrd /boot/initrd-${KERNEL_VERSION} | grep hpsa.conf
