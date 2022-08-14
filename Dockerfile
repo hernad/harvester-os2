@@ -153,6 +153,7 @@ COPY files/ /
 # cos-immutable-rootfs - add dracut zfs dependency
 # cos dependencies are: rootfs-block, dm, zfs
 RUN sed -i 's/echo rootfs-block dm/echo rootfs-block dm zfs/g' /usr/lib/dracut/modules.d/30cos-immutable-rootfs/module-setup.sh
+RUN sed -i 's/After=initrd-root-fs.target cos-setup-rootfs.service/After=zfs-import.target initrd-root-fs.target cos-setup-rootfs.service/g' /usr/lib/dracut/modules.d/30cos-immutable-rootfs/cos-immutable-rootfs.service
 
 RUN mkinitrd
 
